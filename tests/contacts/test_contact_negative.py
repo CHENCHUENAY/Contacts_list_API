@@ -1,5 +1,6 @@
 from api.contacts_api import create_contact
 
+
 def test_invalid_email_contact_creation(headers):
 
     payload = {
@@ -12,19 +13,9 @@ def test_invalid_email_contact_creation(headers):
     response = create_contact(headers, payload)
 
     assert response.status_code == 400
-    print(response.status_code)
 
-# def test_create_contact_missing_email(headers):
-#
-#     payload = {
-#         "firstName": "Enay",
-#         "lastName": "QA",
-#         "phone": "123456789"
-#     }
-#
-#     response = create_contact(headers, payload)
-#
-#     assert response.status_code == 400
+    data = response.json()
+    assert data is not None
 
 
 def test_create_contact_without_token():
@@ -40,6 +31,8 @@ def test_create_contact_without_token():
 
     assert response.status_code == 401
 
+    data = response.json()
+    assert data is not None
 
 
 def test_create_contact_missing_firstname(headers):
@@ -53,3 +46,6 @@ def test_create_contact_missing_firstname(headers):
     response = create_contact(headers, payload)
 
     assert response.status_code == 400
+
+    data = response.json()
+    assert data is not None

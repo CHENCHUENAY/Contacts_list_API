@@ -24,3 +24,9 @@ def headers(token):
     }
 
     return headers
+
+def pytest_sessionfinish(session, exitstatus):
+    # runs once after ALL tests are done
+    with open("results/logs/test_run.log", "a") as f:
+        f.write("                                --- End of test run ---\n \n")
+         

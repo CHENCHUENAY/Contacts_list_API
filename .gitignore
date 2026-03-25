@@ -1,5 +1,9 @@
 .venv/
 __pycache__/
+.pytest_cache/
 *.pyc
-reports/
+results/
 practice
+.env
+.idea/
+.vscode/

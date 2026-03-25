@@ -8,7 +8,6 @@ from api.contacts_api import (
     delete_contact
 )
 
-
 # -----------------------------
 # Helper: reusable contact creator
 # -----------------------------
@@ -35,7 +34,9 @@ def create_test_contact(headers):
 # -----------------------------
 @pytest.fixture(scope="function")
 def created_contact(headers):
-    return create_test_contact(headers)
+    data = create_test_contact(headers)
+    yield data
+    delete_contact(headers, data["_id"])  # cleanup: remove test data after each test
 
 
 # -----------------------------
